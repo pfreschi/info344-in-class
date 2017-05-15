@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form id="zipform">
+        <div>
+            <span>Enter a city to see zip codes:</span>
+            <input type="text" id="city">
+            <button type="submit">Click</button>
+        </div>
+    </form>
+    <script>
+        document.getElementById("zipform").addEventListener("submit", function(e) {
+            e.preventDefault(); //prevent auto submit
+
+            var city = document.getElementById("city").value;
+            console.log(city);
+            fetch("http://138.68.245.57/zips/city/" + city)
+                .then(function(resp) {
+                    console.log(resp)
+                    return resp.json()
+                })
+                .then(function(data) {
+                    console.log(data)
+                })
+                .catch(function(err) {
+                    console.error(err)
+                })
+        })
+
+    </script>
+</body>
+</html>
